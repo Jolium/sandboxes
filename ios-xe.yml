@@ -1,0 +1,19 @@
+---
+# playbook to get basic IOS facts, just to prove Ansible works to a Cisco device.
+- name: Get IOS Facts from a Cisco IOS or XE router.
+  hosts: ios-xe
+  vars:
+    cli:
+      host: "{{ ansible_host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      port: "{{ port }}"
+
+  tasks:
+    - ios_facts:
+        gather_subset: all
+        provider: "{{ cli }}"
+    - debug:
+        msg: "Device hostname is {{ ansible_net_hostname }}"
+    - debug:
+        msg: "Device OS version is {{ ansible_net_version }}"
