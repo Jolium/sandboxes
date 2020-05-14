@@ -1,0 +1,25 @@
+---
+
+- name: Get NX-OS interfaces
+  hosts: nx-os
+  connection: local
+  gather_facts: false
+
+  vars:
+    nxos_provider:
+      transport: nxapi
+      host: "{{ ansible_host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      port: "{{ port }}"
+
+  tasks:
+
+    - name: run multiple commands and evaluate the output
+      nxos_command:
+        commands:
+          - show version
+          - show interfaces
+#        wait_for:
+#          - result[0] contains Cisco
+#          - result[1] contains loopback0

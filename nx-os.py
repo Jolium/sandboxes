@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+
 import requests
 import json
 
+
+# Disables ssl warnings when a request is made to an
+# HTTPS URL without certificate verification enabled
 requests.packages.urllib3.disable_warnings(
     requests.packages.urllib3.exceptions.InsecureRequestWarning
  )
@@ -19,7 +24,7 @@ payload = {
         "type": "cli_show",
         "chunk": "0",
         "sid": "1",
-        "input": "show hostname ; show ip interface lo1",
+        "input": "show hostname ; show version",
         "output_format": "json",
     }
 }

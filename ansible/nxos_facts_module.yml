@@ -1,0 +1,26 @@
+- name: nxos_facts module
+  hosts: nx-os
+  vars:
+    ssh:
+      host: "{{ ansible_host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      port: "{{ port }}"
+      transport: cli
+    nxapi:
+      host: "{{ ansible_host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      transport: nxapi
+      use_ssl: yes
+      validate_certs: no
+      port: 8181
+
+  tasks:
+    - name: nxos_facts SSH
+      nxos_facts:
+        provider: "{{ ssh }}"
+
+    - name: nxos_facts nxapi
+      nxos_facts:
+        provider: "{{ nxapi }}"
